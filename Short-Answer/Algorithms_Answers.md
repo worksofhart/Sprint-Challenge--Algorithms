@@ -30,3 +30,31 @@ ears = 0
 ```
 
 ## Exercise II
+
+Binary search would be the most efficient way to zero in on `f`.
+
+def find_safe_floor(floors):
+low_floor = 1
+high_floor = floors
+
+    # Step A: Go to the middle floor of the building
+    # Step B: Drop an egg
+    # Step C:
+    #         If it breaks, we know our safe floor will be lower, so go to the mid point between the bottom and the current floor - 1 and repeat from Step B
+
+    # Loop until we find the safe floor by ruling out unsafe ones
+    while low_floor <= high_floor:
+        # Go to the middle floor of the building
+        middle_floor = (high_floor + low_floor) // 2
+
+        # Drop an egg
+        is_broken = drop_egg_from_floor(middle_floor) # True if egg breaks
+
+        # If it breaks, we know our safe floor will be lower, so go to the mid point between the bottom and the current floor - 1
+        if is_broken is True:
+            high_floor = middle_floor - 1
+        # Else look higher, going to the mid point between the current and top floor to see if there we can push our unbroken egg drop record further and get into the Guinness Book
+        else:
+            low_floor = middle_floor + 1
+
+    return high_floor
