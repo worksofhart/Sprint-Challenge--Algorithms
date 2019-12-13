@@ -125,6 +125,7 @@ class SortingRobot:
                 if self.compare_item() == 1:
                     self.set_light_on()
                     self.swap_item()
+
                 self.move_left()
                 self.swap_item()
                 self.move_right()
@@ -133,9 +134,58 @@ class SortingRobot:
                 self.move_left()
                 if self.compare_item() == -1:
                     self.swap_item()
+
                 self.move_right()
                 self.swap_item()
                 self.move_left()
+        print()
+
+
+def super_pause():
+    for i in range(3000):
+        pass
+
+
+def super_swap(self):
+    self._time += 1
+    self._item, self._list[self._position] = self._list[self._position], self._item
+    if self._list[self._position] is not None:
+        print(chr(32 + self._list[self._position] %
+                  95), end="\u001b[1D", flush=True)
+    else:
+        print("#", end="\u001b[1D", flush=True)
+    super_pause()
+
+
+def super_left(self):
+    if self.can_move_left():
+        print("", end="\u001b[1D", flush=True)
+    self._time += 1
+    if self._position > 0:
+        self._position -= 1
+        return True
+    else:
+        return False
+    super_pause()
+
+
+def super_right(self):
+    if self.can_move_right():
+        print("", end="\u001b[1C", flush=True)
+    self._time += 1
+    if self._position < len(self._list) - 1:
+        self._position += 1
+        return True
+    else:
+        return False
+    super_pause()
+
+
+super = False
+if super:
+    SortingRobot.move_left = super_left
+    SortingRobot.move_right = super_right
+    SortingRobot.swap_item = super_swap
 
 
 if __name__ == "__main__":
