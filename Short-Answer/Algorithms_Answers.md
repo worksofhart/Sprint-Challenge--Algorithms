@@ -37,11 +37,6 @@ def find_safe_floor(floors):
 low_floor = 1
 high_floor = floors
 
-    # Step A: Go to the middle floor of the building
-    # Step B: Drop an egg
-    # Step C:
-    #         If it breaks, we know our safe floor will be lower, so go to the mid point between the bottom and the current floor - 1 and repeat from Step B
-
     # Loop until we find the safe floor by ruling out unsafe ones
     while low_floor <= high_floor:
         # Go to the middle floor of the building
@@ -58,3 +53,5 @@ high_floor = floors
             low_floor = middle_floor + 1
 
     return high_floor
+
+Working repl.it: https://repl.it/@mhartdev/Egg-Drop
