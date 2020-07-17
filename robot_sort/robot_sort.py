@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -96,15 +98,100 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
+
+        # Bubble Sort
+        # self.set_light_on()
+        # while self.light_is_on():
+        #     self.set_light_off()
+        #     while self.can_move_right():
+        #         self.swap_item()
+        #         self.move_right()
+        #         if self.compare_item() == 1:
+        #             self.set_light_on()
+        #             self.swap_item()
+        #         self.move_left()
+        #         self.swap_item()
+        #         self.move_right()
+        #     while self.can_move_left():
+        #         self.move_left()
+
+        # Cocktail Sort (bidirectional bubble sort)
+        self.set_light_on()
+        while self.light_is_on():
+            self.set_light_off()
+            while self.can_move_right():
+                self.swap_item()
+                self.move_right()
+                if self.compare_item() == 1:
+                    self.set_light_on()
+                    self.swap_item()
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+            while self.light_is_on() and self.can_move_left():
+                self.swap_item()
+                self.move_left()
+                if self.compare_item() == -1:
+                    self.swap_item()
+                self.move_right()
+                self.swap_item()
+                self.move_left()
+        print()
+
+
+def super_pause():
+    for i in range(3000):
         pass
+
+
+def super_swap(self):
+    self._time += 1
+    self._item, self._list[self._position] = self._list[self._position], self._item
+    if self._list[self._position] is not None:
+        print(chr(32 + self._list[self._position] %
+                  95), end="\u001b[1D", flush=True)
+    else:
+        print("#", end="\u001b[1D", flush=True)
+    super_pause()
+
+
+def super_left(self):
+    if self.can_move_left():
+        print("", end="\u001b[1D", flush=True)
+    self._time += 1
+    if self._position > 0:
+        self._position -= 1
+        return True
+    else:
+        return False
+    super_pause()
+
+
+def super_right(self):
+    if self.can_move_right():
+        print("", end="\u001b[1C", flush=True)
+    self._time += 1
+    if self._position < len(self._list) - 1:
+        self._position += 1
+        return True
+    else:
+        return False
+    super_pause()
+
+
+super = False
+if super:
+    SortingRobot.move_left = super_left
+    SortingRobot.move_right = super_right
+    SortingRobot.swap_item = super_swap
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1,
+         45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
     robot = SortingRobot(l)
 
